@@ -1,0 +1,4 @@
+bin/
+obj/
+src/FlexLexer.h
+src/lex.yy.cpp
