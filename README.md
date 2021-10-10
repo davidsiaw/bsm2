@@ -19,7 +19,7 @@ this file is called input.bsm
 
 writes ABC
 
-; 00 41 42 43
+; 41 42 43
 
 writes D
 
