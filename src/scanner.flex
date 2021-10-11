@@ -1,6 +1,12 @@
 %{
 #include "converter.h"
 #include "error.h"
+
+/* Save the position for error messages */
+#define YY_USER_ACTION                                                   \
+  start_column = yycolumn;                                               \
+  yycolumn += yyleng;
+
 %}
 
 HEXCHAR         [A-Fa-f0-9]
@@ -9,6 +15,8 @@ QUOTE           [']
 QUOTABLECHAR    [A-Za-z0-9]
 
 %%
+  int yycolumn = 1;
+  int start_column;
 
 {WHITESPACE}                   /* skip blanks and tabs */
 
@@ -16,8 +24,10 @@ QUOTABLECHAR    [A-Za-z0-9]
 
 {QUOTE}{QUOTABLECHAR}{QUOTE}   std::cout << Converter().convert_quotechar(YYText());
 
-. throw UnknownCharacterError();
+. throw UnknownCharacterError(start_column);
 
 %%
 
-int yyFlexLexer::yywrap() { return 1; }
+int yyFlexLexer::yywrap() {
+  return 1;
+}
