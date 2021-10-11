@@ -1,7 +1,6 @@
 %{
+#include "converter.h"
 #include "error.h"
-#include <string>
-
 %}
 
 HEXCHAR         [A-Fa-f0-9]
@@ -13,9 +12,9 @@ QUOTABLECHAR    [A-Za-z0-9]
 
 {WHITESPACE}                   /* skip blanks and tabs */
 
-{HEXCHAR}{HEXCHAR}             std::cout << static_cast<char>(stoi(std::string(YYText()), nullptr, 16));
+{HEXCHAR}{HEXCHAR}             std::cout << Converter().convert_hexpair(YYText());
 
-{QUOTE}{QUOTABLECHAR}{QUOTE}   std::cout << YYText()[1];
+{QUOTE}{QUOTABLECHAR}{QUOTE}   std::cout << Converter().convert_quotechar(YYText());
 
 . throw UnknownCharacterError();
 
