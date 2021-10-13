@@ -8,7 +8,7 @@ LEXER_H := $(SRC_DIR)/FlexLexer.h
 LEXER_CPP := $(SRC_DIR)/lex.yy.cpp
 LEXER := $(LEXER_H) $(LEXER_CPP)
 
-SRC := $(wildcard $(SRC_DIR)/*.cpp) $(LEXER_CPP)
+SRC := $(LEXER_CPP) $(wildcard $(SRC_DIR)/*.cpp)
 
 OBJ := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
