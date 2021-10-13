@@ -8,11 +8,11 @@ LEXER_H := $(SRC_DIR)/FlexLexer.h
 LEXER_CPP := $(SRC_DIR)/lex.yy.cpp
 LEXER := $(LEXER_H) $(LEXER_CPP)
 
-SRC := $(LEXER_CPP) $(wildcard $(SRC_DIR)/*.cpp)
+SRC := $(wildcard $(SRC_DIR)/*.cpp) $(LEXER_CPP)
 
 OBJ := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
-CPPFLAGS := -Iinclude -Isrc -MMD -MP -std=c++17
+CPPFLAGS := -Iinclude -MMD -MP -std=c++17
 CFLAGS   := -Wall -Wpedantic
 LDFLAGS  := 
 LDLIBS   := 
@@ -24,7 +24,6 @@ $(EXE): $(OBJ) | $(BIN_DIR)
 
 $(LEXER_CPP):	$(SRC_DIR)/scanner.flex
 	flex -+ --header-file=$(LEXER_H) -o $(LEXER_CPP) $(SRC_DIR)/scanner.flex
-	ls $(SRC_DIR)
 
 $(SRC_DIR)/%.cpp: $(LEXER)
 

@@ -17,7 +17,6 @@ jobs:
         gem install markspec
     - name: Build
       run: |
-        make --just-print
         make all
     - name: Test
       run: markspec
