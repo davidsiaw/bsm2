@@ -5,26 +5,31 @@
 /* Save the position for error messages */
 #define YY_USER_ACTION                                                   \
   start_column = yycolumn;                                               \
+  length = yyleng;                                                       \
   yycolumn += yyleng;
 
 %}
 
-HEXCHAR         [A-Fa-f0-9]
+HEXCHAR         [[:xdigit:]]
 WHITESPACE      [ \r\n\t]+
+DOUBLEQUOTE     ["]
 QUOTE           [']
-QUOTABLECHAR    [A-Za-z0-9]
+QUOTABLECHAR    [[:print:]]
+STRINGCHAR      [^\x00-\x1F\x22\x7f-\xff]
 
 %%
-  int yycolumn = 1;
+  int yycolumn = 1, length = 0;
   int start_column;
 
-{WHITESPACE}                   /* skip blanks and tabs */
+{WHITESPACE}                             /* skip blanks and tabs */
 
-{HEXCHAR}{HEXCHAR}             std::cout << Converter().convert_hexpair(YYText());
+{HEXCHAR}{HEXCHAR}                       std::cout << Converter().convert_hexpair(YYText());
 
-{QUOTE}{QUOTABLECHAR}{QUOTE}   std::cout << Converter().convert_quotechar(YYText());
+{QUOTE}{QUOTABLECHAR}{QUOTE}             std::cout << Converter().convert_quotechar(YYText());
 
-. throw UnknownCharacterError(start_column);
+{DOUBLEQUOTE}{STRINGCHAR}+{DOUBLEQUOTE}  std::cout << Converter().convert_doublequote(YYText());
+
+. throw UnknownCharacterError(start_column, length);
 
 %%
 

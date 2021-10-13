@@ -1,0 +1,108 @@
+Stolen from https://github.com/cj1128/tiny-x64-helloworld
+
+ELF Header
+----------
+
+00: e_ident (Magic header)
+; 7F 'E' 'L' 'F' 02 01 01 00
+
+08: 8 bytes here that are reserved
+; 00 00 00 00 00 00 00 00
+
+10: e_type
+; 02 00
+
+12: e_machine
+; 3e 00
+
+14: e_version
+; 01 00 00 00
+
+18: e_entry
+; 78 00 40 00 00 00 00 00
+
+20: e_phoff
+; 40 00 00 00 00 00 00 00
+
+28: e_shoff
+; 00 00 00 00 00 00 00 00
+
+30: e_flags
+; 00 00 00 00
+
+34: e_ehsize
+; 40 00
+
+36: e_phentsize
+; 38 00
+
+38: e_phnum
+; 01 00
+
+3a: e_shentsize
+; 00 00
+
+3c: e_shnum
+; 00 00
+
+3e: e_shstrndx
+; 00 00
+
+Program Header
+--------------
+
+40: p_type
+; 01 00 00 00
+
+44: p_flags
+; 05 00 00 00
+
+48: p_offset
+; 00 00 00 00 00 00 00 00
+
+50: p_vaddr
+; 00 00 40 00 00 00 00 00
+
+58: p_paddr
+; 00 00 40 00 00 00 00 00
+
+60: p_filesz
+; aa 00 00 00 00 00 00 00
+
+68: p_memsz
+; aa 00 00 00 00 00 00 00
+
+70: p_align
+; 00 10 00 00 00 00 00 00
+
+Code
+----
+
+78: # mov    $0x1,%eax
+;   b8 01 00 00 00
+
+7d: # mov    $0x1,%edi
+;   bf 01 00 00 00
+
+82: # movabs $0x40009d,%rsi
+0x9d is the position of the string
+;   48 be 9d 00 40 00 00 00 00 00
+
+8c: # mov    $0xd,%edx
+0xd = 13, the size of the string
+;   ba 0d 00 00 00
+
+91: # syscall
+;   0f 05
+
+93: # mov    $0x3c,%eax
+;   b8 3c 00 00 00
+
+98: # xor    %rdi,%rdi
+;   48 31 ff
+
+9b: # syscall
+;   0f 05
+
+9d:
+;   "Hello, world" 0a

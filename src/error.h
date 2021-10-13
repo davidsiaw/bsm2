@@ -4,14 +4,22 @@
 class UnknownCharacterError
 {
   int colno;
+  int len;
+
 public:
-  UnknownCharacterError(int colno) :
-    colno(colno)
+  UnknownCharacterError(int colno, int length) :
+    colno(colno),
+    len(length)
   { }
 
   const int column() const
   {
     return colno;
+  }
+
+  const int length() const
+  {
+    return len;
   }
 };
 

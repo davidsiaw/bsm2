@@ -62,10 +62,17 @@ private:
 
     for (int i = 0; i < e.column(); i++)
     {
-      std::cerr << " "; 
+      std::cerr << " ";
     }
 
-    std::cerr << "^~here" << std::endl;
+    std::cerr << "^";
+
+    for (int i = 0; i < e.length(); i++)
+    {
+      std::cerr << "~";
+    }
+
+    std::cerr << "around here" << std::endl;
 
     exit(EXIT_FAILURE);
   }

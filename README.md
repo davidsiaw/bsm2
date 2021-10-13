@@ -1,6 +1,6 @@
 # bsm2
 
-Fast version of bsm
+Fast version of bsm. bsm2 converts input that describes a binary file in a human-readable format and outputs a binary file.
 
 # Building
 
@@ -27,8 +27,20 @@ writes D
 
 ```
 
+You can find more examples in the `spec` directory, as well as more detailed documentation on how to use different features and explanations about edge cases.
+
 # Running
 
 ```bash
 bin/bsm2 < input.bsm
 ```
+
+# Testing
+
+The spec for this program is written in Markdown. See the `spec` directory.
+
+In order to run the tests, you need `markspec`, which you can install with `gem install markspec`
+
+Run the tests by going `markspec`
+
+You can run an individual test too by going `markspec spec/abc_test.md`

@@ -1,7 +1,9 @@
 #ifndef CONVERTER_H
 #define CONVERTER_H
 
+#include <iostream>
 #include <string>
+#include <sstream>
 
 class Converter
 {
@@ -18,6 +20,17 @@ public:
   char convert_quotechar(const std::string& yytext)
   {
     return yytext[1];
+  }
+
+  std::string convert_doublequote(const std::string& yytext)
+  {
+    std::stringstream result;
+    for (uint i = 1; i < yytext.length() - 1; i++)
+    {
+      result << yytext[i];
+    }
+
+    return result.str();
   }
 };
 
