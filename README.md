@@ -4,7 +4,7 @@ Fast version of bsm. bsm2 converts input that describes a binary file in a human
 
 # Building
 
-requires `sudo apt install flex`
+requires `sudo apt install flex libfl-dev`
 
 ```bash
 make
