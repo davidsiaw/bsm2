@@ -1,5 +1,16 @@
 Stolen from https://github.com/cj1128/tiny-x64-helloworld
 
+How to use
+----------
+
+This only works on x64 Linux machines, and is a simple demonstration of how bsm2 can be used in real life
+
+To generate the executable simply go
+
+    bin/bsm2 < examples/hello_aout.bsm2 > hello
+    chmod +x hello
+    ./hello
+
 ELF Header
 ----------
 
