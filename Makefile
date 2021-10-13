@@ -12,7 +12,6 @@ SRC := $(wildcard $(SRC_DIR)/*.cpp) $(LEXER_CPP)
 
 OBJ := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
-
 CPPFLAGS := -Iinclude -MMD -MP -std=c++17
 CFLAGS   := -Wall -Wpedantic
 LDFLAGS  := 
