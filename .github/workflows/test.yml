@@ -16,6 +16,6 @@ jobs:
         sudo apt-get install -y flex build-essential
         gem install markspec
     - name: Build
-      run: make
+      run: make --just-print
     - name: Test
       run: markspec
