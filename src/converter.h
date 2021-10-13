@@ -32,6 +32,20 @@ public:
 
     return result.str();
   }
+
+  unsigned char convert_bindigits(const std::string& yytext)
+  {
+    unsigned char c = 0;
+    for (uint i = 1; i < yytext.length() - 1; i++)
+    {
+      if (yytext[i] == '1')
+      {
+        c += 1 << (8-i);
+      }
+    }
+
+    return c;
+  }
 };
 
 #endif // CONVERTER_H

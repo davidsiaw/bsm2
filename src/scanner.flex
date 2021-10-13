@@ -16,6 +16,7 @@ DOUBLEQUOTE     ["]
 QUOTE           [']
 QUOTABLECHAR    [[:print:]]
 STRINGCHAR      [^\x00-\x1F\x22\x7f-\xff]
+BINDIGIT        [01\.]
 
 %%
   int yycolumn = 1, length = 0;
@@ -28,6 +29,8 @@ STRINGCHAR      [^\x00-\x1F\x22\x7f-\xff]
 {QUOTE}{QUOTABLECHAR}{QUOTE}             std::cout << Converter().convert_quotechar(YYText());
 
 {DOUBLEQUOTE}{STRINGCHAR}+{DOUBLEQUOTE}  std::cout << Converter().convert_doublequote(YYText());
+
+[<]{BINDIGIT}{8}[>]                      std::cout << Converter().convert_bindigits(YYText());
 
 . throw UnknownCharacterError(start_column, length);
 

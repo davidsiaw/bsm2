@@ -124,6 +124,23 @@ You should get:
 hi everyone my name is \n
 ```
 
+### Bitfield
+
+You can write bytes by representing their individual bits too by doing this:
+
+```bash command
+cat <<BSM | bin/bsm2
+; <01100001> <.11...1.>
+BSM
+```
+
+You should get:
+
+```text expected stdout
+ab
+```
+
+`0` and `.` are both 0 and `1` is 1. Use these characters in a way that makes it easy to read.
 
 ### Tricks
 

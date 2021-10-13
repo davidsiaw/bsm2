@@ -66,7 +66,8 @@ Program Header
 ; 01 00 00 00
 
 44: p_flags
-; 05 00 00 00
+        rwx permissions
+; <.....101> 00 00 00
 
 48: p_offset
 ; 00 00 00 00 00 00 00 00
@@ -88,6 +89,26 @@ Program Header
 
 Code
 ----
+
+mov instruction:
+  b0 al
+  b1 cl
+  b2 dl
+  b3 bl
+  b4 ah
+  b5 ch
+  b6 dh
+  b7 bh
+
+  b8 eax 1011 1000
+  b9 ecx 1011 1001
+  ba edx 1011 1010
+  bb ebx 1011 1011
+  bc esp
+  bd ebp
+  be esi
+  bf edi
+
 
 78: # mov    $0x1,%eax
 ;   b8 01 00 00 00
