@@ -1,6 +1,9 @@
 # bsm2
 
-Fast version of bsm. bsm2 converts input that describes a binary file in a human-readable format and outputs a binary file.
+bsm2 consists of
+
+- bsm2 which converts input that describes a binary file in a human-readable format and outputs a binary file.
+- msb2 which converts a binary file into a bsm2 file that can be parsed as plain text
 
 # Building
 
